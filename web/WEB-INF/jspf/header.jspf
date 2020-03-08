@@ -1,0 +1,17 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<head>
+    <link rel="stylesheet" href="/estilo/main.css" />
+</head>
+<header id="header">
+    <div class="inner">
+        <a href="/home.jsp" class="logo">Amortização</a>
+        <nav id="nav">
+            <a href="home.jsp">Home</a>
+            <a href="amortizacao-constante.jsp">Amortização constante</a>
+            <a href="amortizacao-americana.jsp">Amortização americana</a>
+            <a href="tabela-price.jsp">Tabela price</a>
+        </nav>
+        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+    </div>
+</header>

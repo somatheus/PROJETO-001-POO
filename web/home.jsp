@@ -13,11 +13,9 @@
         <title>Home</title>
     </head>
     <body>
-            <section id="banner">
-                <h1>Amortizações</h1>
-                <p>Essa aplicação tem como intuito fazer o cálculo de amortizações, Amortização é um processo de extinção de uma dívida através de pagamentos periódicos
-                </p>
-            </section>
+    <%@include file="WEB-INF/jspf/header.jspf" %>
+    <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
+            
             <section id="one" class="wrapper">
                 <div class="inner">
                     <div class="flex flex-3">
@@ -27,7 +25,7 @@
                             </header>
                             <p> É uma forma de amortização de um empréstimo por prestações que incluem os juros, amortizando assim partes iguais do valor total do empréstimo</p>
                             <footer>
-                                <a href="#" class="button special">Calcular</a>
+                                <a href="amortizacao-constante.jsp" class="button special">Calcular</a>
                             </footer>
                         </article>
                         <article>
@@ -97,6 +95,6 @@
                 </div>
             </div>
         </section>
-        
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

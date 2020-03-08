@@ -48,7 +48,7 @@
 	body {
 		-webkit-text-size-adjust: none;
 	}
-
+   
 /* Box Model */
 
 	*, *:before, *:after {
@@ -3065,3 +3065,6 @@
 		}
 
 	}
+        .texto-footer-centralizado{
+            text-align:center;
+        }

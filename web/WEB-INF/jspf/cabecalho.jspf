@@ -1,0 +1,11 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<head>
+    <link rel="stylesheet" href="/estilo/main.css" />
+</head>
+
+<section id="banner">
+    <h1>Amortizações</h1>
+    <p>Essa aplicação tem como intuito fazer o cálculo de amortizações, Amortização é um processo de extinção de uma dívida através de pagamentos periódicos
+    </p>
+</section>

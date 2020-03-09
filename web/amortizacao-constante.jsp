@@ -7,26 +7,98 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-        <title>Sistema de amortização constante</title>
+        <title>Amortização constante</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="estilo/main.css" />
     <body>
-        <font face="arial">
-    <center>
-        <table><tr><td><h1>Sistema de Amortização Constante</h1></td></tr></table><br>
-    </center>
-    <font size="1" face="arial">
-    <center>
-        <table><tr><td><h1>O sistema de amortização constante (SAC) é uma forma de amortização de um empréstimo por prestações que incluem os juros, amortizando assim partes iguais do valor total do empréstimo.</h1></td></tr></table><br></center></font>
-    <center>
-        <table><tr><td align="center" width="122"><b>Valor da Divida:</b></td><td align="left"><input type="text" name="valorDivida" size="10"
-                                                                                                      maxlength="10"></td></tr>
-            <tr><td align="center" width="200"><b>Número de Parcelas:</b></td><td align="left"><input type="text" name="nParcelas" size="5"
-                                                                                                      maxlength="3"></td></tr>
-            <tr><td align="left" width="122"><p align="center">&nbsp;</td><td align="left"><p align="center"><input type="submit" value="Enviar"><input type="reset"
-                                                                                                                                                        value="Limpar"></td></tr>
-        </table>
-    </center>
-    </font>
+       <%@include file="WEB-INF/jspf/header.jspf" %>
+       <%@include file="WEB-INF/jspf/cabecalho.jspf" %>
+       
+        <section id="one" class="wrapper">
+            <div class="inner">
+                <div class="">
+                    <h2>Amortização constante</h2>
+                    <% if (request.getParameter("calcular") == null) { %>
+                    <form>
+                        <article>
+                            <b>Valor da Divida: 
+                            <br/><input type="number" name="valorDivida"/>
+                        </article>
+                        
+                        <article>
+                            <b>Quantidade de Parcelas: 
+                            <br/><input type="number" name="qtdParcelas"/>
+                        </article>
+                        
+                        <article>
+                            <b>Taxa: 
+                            <br/><input type="number" step="0.01" name="taxa"/>
+                        <article/>
+                        
+                        <br/>
+                            <input type="submit" name="calcular" value="Calcular"/>
+                        
+                    </form>
+                    <% } else{ 
+                        try {
+                        double i=0, qtdParcelas=0, valorDivida=0, amortizacao=0, juros=0, totalAmortizacao=0, totalJuros=0, prestacao=0,totalPrestacao=0;                        
+                        i = Double.parseDouble(request.getParameter("taxa"))/100;
+                        valorDivida = Double.parseDouble(request.getParameter("valorDivida"));
+                        qtdParcelas = Double.parseDouble(request.getParameter("qtdParcelas"));
+                        amortizacao = valorDivida / qtdParcelas;%>
+                     
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Período</th>
+                                <th>Prestação</th>
+                                <th>Juros</th>
+                                <th>Amortização</th>
+                                <th>Saldo Devedor</th>
+                            </tr>
+                        </thead>
+                        <tr >
+                            <td> 0 </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>R$ <%=valorDivida%></td>
+                             <%for (int x = 1; x <= qtdParcelas; x++) {                                
+                                juros = valorDivida * i;
+                                prestacao = amortizacao + juros;
+                                totalPrestacao = prestacao + totalPrestacao;
+                                
+                                totalJuros= juros + totalJuros;
+                                totalAmortizacao = amortizacao + totalAmortizacao;
+                                valorDivida = valorDivida - amortizacao;
+                             %>
+                        </tr>
+                        <tr>
+                            <td><%=x%></td>
+                            
+                            <td>R$ <%=prestacao%></td>
+                            <td>R$ <%=juros%></td>
+                            <td>R$ <%=amortizacao%></td>
+                            <td>R$ <%=valorDivida%></td>
+                        </tr>
+                        <%}%>
+                        <tr>
+                            <td> Total</td>
+                            <td >R$ <%=totalPrestacao%></td>
+                            <td >R$ <%=totalJuros%></td>
+                            <td >R$ <%=totalAmortizacao%></td>
+                            <td ></td>
+
+                        </tr>
+                    </table>
+                    <% } catch (Exception ex) { %>
+                         <h3>Erro ao realizar o cálculo</h3>
+                    <%}
+                    }%>
+                </div>
+            </div>
+        </section>
+                <%@include file="WEB-INF/jspf/footer.jspf" %>
 </body>
 </head>
 </html>
